@@ -4,12 +4,12 @@ import datetime
 
 DATABASE = SqliteDatabase('workouts.sqlite')
 
+
 class User(Model):
     email = CharField()
     password = CharField()
     class Meta:
         database = DATABASE
-
 
 
 class Workout(Model):
@@ -26,9 +26,9 @@ class Lift(Model):
     current_weight = CharField()
     sets = CharField()
     reps = CharField()
-    persoanl_best = CharField()
+    personal_best = CharField()
     notes = CharField()
-    workout = ForeignKeyField(Workout, backref='lifts')
+    # workout = ForeignKeyField(Workout, backref='lifts')
     created_at = DateTimeField(default=datetime.datetime.now)
     class Meta:
         database = DATABASE
