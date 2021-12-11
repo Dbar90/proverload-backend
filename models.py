@@ -2,7 +2,7 @@ from peewee import *
 import datetime
 
 
-DATABASE = SqliteDatabase('workouts.sqlite')
+DATABASE = SqliteDatabase('workouts.sqlite', pragmas={'foreign_keys': 1})
 
 
 class User(Model):
@@ -28,7 +28,7 @@ class Lift(Model):
     reps = CharField()
     personal_best = CharField()
     notes = CharField()
-    # workout = ForeignKeyField(Workout, backref='lifts')
+    # workout_id = ForeignKeyField(Workout, backref='lifts')
     created_at = DateTimeField(default=datetime.datetime.now)
     class Meta:
         database = DATABASE

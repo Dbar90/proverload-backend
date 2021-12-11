@@ -1,0 +1,37 @@
+import models
+
+
+from flask import Blueprint, request, jsonify
+
+
+from playhouse.shortcuts import model_to_dict
+
+
+workouts = Blueprint('workouts', 'workouts')
+
+
+@workouts.route('/', methods=['GET'])
+def workouts_index():
+    result = models.Workout.select()
+
+    workout_dicts = [model_to_dict(workout) for workout in result]
+
+    return jsonify({
+        'data': workout_dicts,
+        'message': f"successfully found {len(workout_dicts)} workouts",
+        'status': 200
+    }), 200
+
+
+@workouts.route('/', methods=['POST'])
+def create_workout():
+    payload = request.get_json()
+    new_workout = models.Workout.create(name=payload['name'])
+
+    workout_dict = model_to_dict(new_workout)
+
+    return jsonify(
+        data=workout_dict,
+        message='Successfully created the workout',
+        status=201
+    ), 201

@@ -10,6 +10,9 @@ from playhouse.shortcuts import model_to_dict
 lifts = Blueprint('lifts', 'lifts')
 
 
+
+
+
 @lifts.route('/', methods=['GET'])
 def lifts_index():
     result = models.Lift.select()
