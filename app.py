@@ -22,9 +22,9 @@ app = Flask(__name__)
 
 
 
-CORS(lifts, origins=['http://localhost:3000'], supports_credentials=True)
+CORS(app, origins=['http://localhost:3000'], supports_credentials=True)
 
-app.register_blueprint(workouts, url_prefix='/api/v1/proverload')
+app.register_blueprint(workouts, url_prefix='/api/v1/workouts')
 app.register_blueprint(lifts, url_prefix='/api/v1/lifts')
 # app.register_blueprint(users, url_prefix='/api/v1/users')
 

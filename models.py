@@ -28,7 +28,7 @@ class Lift(Model):
     reps = CharField()
     personal_best = CharField()
     notes = CharField()
-    # workout_id = ForeignKeyField(Workout, backref='lifts')
+    workout_id = ForeignKeyField(Workout, backref='lifts', on_delete='CASCADE')
     created_at = DateTimeField(default=datetime.datetime.now)
     class Meta:
         database = DATABASE

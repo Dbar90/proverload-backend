@@ -35,3 +35,26 @@ def create_workout():
         message='Successfully created the workout',
         status=201
     ), 201
+
+
+@workouts.route('/<id>', methods=['GET'])
+def get_one_workout(id):
+    workout = models.Workout.get_by_id(id)
+
+    return jsonify(
+        data=model_to_dict(workout),
+        message='Successfully found Workout',
+        status=200
+    ), 200
+
+
+@workouts.route('/<id>', methods=['DELETE'])
+def delete_lift(id):
+    delete_query = models.Workout.delete().where(models.Workout.id == id)
+    nums_of_rows_deleted = delete_query.execute()
+
+    return jsonify(
+        data={},
+        message=f"Successfully deleted {nums_of_rows_deleted} workout with id {id}",
+        status=200
+    ), 200
