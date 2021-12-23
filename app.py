@@ -29,6 +29,14 @@ app.secret_key = 'poopbuttmcgee'
 login_manager = LoginManager()
 login_manager.init_app(app)
 
+@login_manager.user_loader
+def load_user(user_id):
+    try:
+        user = models.User.get_by_id(user_id)
+        return user
+    except models.DoesNotExist:
+        return None
+
 
 CORS(app, origins=['http://localhost:3000'], supports_credentials=True)
 

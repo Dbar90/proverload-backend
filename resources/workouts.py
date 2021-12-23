@@ -6,6 +6,8 @@ from flask import Blueprint, request, jsonify
 
 from playhouse.shortcuts import model_to_dict
 
+from flask_login import current_user
+
 
 workouts = Blueprint('workouts', 'workouts')
 
@@ -15,6 +17,9 @@ def workouts_index():
     result = models.Workout.select()
 
     workout_dicts = [model_to_dict(workout) for workout in result]
+
+    for workout_dict in workout_dicts:
+        workout_dict['user'].pop('password')
 
     return jsonify({
         'data': workout_dicts,
@@ -26,7 +31,7 @@ def workouts_index():
 @workouts.route('/', methods=['POST'])
 def create_workout():
     payload = request.get_json()
-    new_workout = models.Workout.create(name=payload['name'])
+    new_workout = models.Workout.create(name=payload['name'], user=current_user.id)
 
     workout_dict = model_to_dict(new_workout)
 
