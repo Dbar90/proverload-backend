@@ -5,7 +5,7 @@ from flask_login import UserMixin
 from playhouse.db_url import connect
 
 
-DATABASE = SqliteDatabase('workouts.sqlite', pragmas={'foreign_keys': 1})
+# DATABASE = SqliteDatabase('workouts.sqlite', pragmas={'foreign_keys': 1})
 DATABASE = connect(os.environ.get('DATABASE_URL') or 'sqlite:///workouts.sqlite')
 
 class User(UserMixin, Model):
@@ -17,7 +17,7 @@ class User(UserMixin, Model):
 
 class Workout(Model):
     name = CharField()
-    user = ForeignKeyField(User, backref='workouts')
+    # user = ForeignKeyField(User, backref='workouts')
     created_at = DateTimeField(default=datetime.datetime.now)
     class Meta:
         database = DATABASE

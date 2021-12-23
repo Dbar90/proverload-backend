@@ -31,7 +31,7 @@ def workouts_index():
 @workouts.route('/', methods=['POST'])
 def create_workout():
     payload = request.get_json()
-    new_workout = models.Workout.create(name=payload['name'], user=current_user.id)
+    new_workout = models.Workout.create(name=payload['name'])
 
     workout_dict = model_to_dict(new_workout)
 

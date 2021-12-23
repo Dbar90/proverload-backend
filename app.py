@@ -16,6 +16,9 @@ from flask_login import LoginManager
 
 import os
 
+from dotenv import load_dotenv
+
+load_dotenv()
 
 DEBUG=True
 PORT=8000
