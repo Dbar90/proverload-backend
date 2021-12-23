@@ -38,7 +38,7 @@ def load_user(user_id):
         return None
 
 
-CORS(app, origins=['http://localhost:3000'], supports_credentials=True)
+CORS(app, origins=['http://localhost:3000', 'https://progressiveoverload-frontend.herokuapp.com'], supports_credentials=True)
 
 app.register_blueprint(workouts, url_prefix='/api/v1/workouts/')
 app.register_blueprint(lifts, url_prefix='/api/v1/lifts/')
