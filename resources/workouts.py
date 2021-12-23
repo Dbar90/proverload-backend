@@ -18,8 +18,7 @@ def workouts_index():
 
     workout_dicts = [model_to_dict(workout) for workout in result]
 
-    for workout_dict in workout_dicts:
-        workout_dict['user'].pop('password')
+    
 
     return jsonify({
         'data': workout_dicts,
