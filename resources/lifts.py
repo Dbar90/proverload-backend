@@ -73,4 +73,4 @@ def delete_lift(id):
         data={},
         message=f"Successfully deleted {nums_of_rows_deleted} lift with id {id}",
         status=200
-    ), 200
+    )
